@@ -37,28 +37,63 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+      let originals = inventors.filter(inventors => (inventors.year >= 1500 && inventors.year < 1600));
+      console.table(originals)
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+      let fullNames = inventors.map(inventors => (`${inventors.first} ${inventors.last}`));
+      console.log(fullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+      const ordered = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
+      console.table(ordered);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+      const allYears = inventors.reduce((a,b) => {
+        return a + (b.passed - b.year);
+      }, 0)
+      console.log(allYears);
 
     // 5. Sort the inventors by years lived
+      const yearsLived = inventors.sort((a,b) => {
+        let aYears = a.passed - a.year;
+        let bYears = b.passed - b.year; 
+        return aYears > bYears ? 1 : -1;
+      });
+      
+      console.table(yearsLived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-
+        //Interesting, I didnt know you could just write those functions right into the console of the page. 
+        
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+     let sortPeople = people.sort((a,b) => {
+      let [a1,a2] = a.split(', ');
+      let [b1,b2] = b.split(', ');
+      return a1 > b1 ? 1 : -1;
+     })
+
+
+     console.table(sortPeople);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    let dataFixed = data.reduce((obj, vehicle)=>{
+     if (!obj[vehicle]) {obj[vehicle] = 0};
+     obj[vehicle]++;
+     return obj;
+    }, {});
+
+    console.log(dataFixed);
 
   </script>
 </body>

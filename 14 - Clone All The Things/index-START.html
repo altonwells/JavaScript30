@@ -7,30 +7,40 @@
 <body>
 
   <script>
-    // start with strings, numbers and booleans
-
+   
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
-
+    const team = players;
+    console.log(players,team);
     // You might think we can just do something like this:
-
+    team[3] = 'Adam';
+    console.log(players,team);
     // however what happens when we update that array?
-
+    players[4] = 'Sam';
+    console.log(players,team);
     // now here is the problem!
-
+    team[5] = 'Greenie';
+    console.log(players);
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    group = players.slice();
 
+    console.log('This is group:',group);
     // one way
 
     // or create a new array and concat the old one in
-
+    gang = [].concat(group);
     // or use the new ES6 Spread
+
+    squad = [...gang];
+    console.log(squad);
+    squad[6] = "Joker";
+    console.log(squad);
 
     // now when we update it, the original one isn't changed
 
@@ -38,10 +48,16 @@
 
     // with Objects
     const person = {
-      name: 'Wes Bos',
-      age: 80
+      name: 'Warren Wells',
+      age: 42
     };
-
+    console.log(person)
+    const capitan = Object.assign({},person,{number: 8, age: 24});
+    console.log(capitan)
+    const guy = {...person};
+    console.log(guy);
+    person.old = 'true';
+    console.log(person,guy);
     // and think we make a copy:
 
     // how do we take a copy instead?
@@ -49,6 +65,25 @@
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    const girlFriend = {
+      name: "Kyla",
+      age: 22,
+      traits: {
+        beautiful: true,
+        funny: true,
+        intelligent: true,
+        mean: false
+      }
+    }
+    
+    console.log(girlFriend);
+
+    const fakeGirlfriend = JSON.parse(JSON.stringify(girlFriend));
+    fakeGirlfriend.traits.mean = true;
+    console.log(fakeGirlfriend);
+
+
 
   </script>
 

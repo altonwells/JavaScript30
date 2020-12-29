@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+
+const keyLog = [];
+const code = "help";
+
+
+window.addEventListener('keyup', (e) => {
+  const len1 = -code.length - 1;
+  const len2 = keyLog.length - code.length;
+  console.log(e.key);
+  keyLog.push(e.key);
+  keyLog.splice(len1, len2);
+  if (keyLog.join('').includes(code)){
+    alert("oh no");
+    cornify_add();
+  }
+  console.log(keyLog);
+  console.log(`Length One: ${len1}, Length Two: ${len2}`)
+})
+
+</script>
+</body>
+</html>

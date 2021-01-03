@@ -11,7 +11,12 @@
 
   <h1 class="speed">
     <span class="speed-value">0</span>
-    <span class="units">KM/H</span>
+    <span class="units">MPH</span>
+  </h1>
+
+  <h1 class='headin'>
+    <span class="heading-value">0</span>
+    <span class="value"> Degrees</span>
   </h1>
 
   <style>
@@ -56,9 +61,40 @@
     .units {
       font-size: 15px;
     }
+
+    .value {
+      font-size: 15px;
+    }
     /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
   </style>
   <script>
+
+    const arrow = document.querySelector('.arrow');
+    const speed = document.querySelector('.speed-value');
+    const header = document.querySelector('.heading-value');
+
+    navigator.geolocation.watchPosition((data) => {
+
+    heading = data.coords.heading;
+    lat = data.coords.latitude;
+    long = data.coords.longitude;
+    velocity = data.coords.speed;
+    mph = Math.round(velocity / 1.609);
+
+    speed.textContent = mph;
+    arrow.style.transform = `rotate(${heading}deg)`;
+    header.textContent = heading;
+    
+    console.log(heading,lat,long, mph)
+  
+    }, (err) => {
+      console.log(err);
+      alert('HEY DUDE YOU GOTTA TURN THIS ON YO');
+    });
+
+
+
+
   </script>
 </body>
 </html>

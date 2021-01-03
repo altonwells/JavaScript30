@@ -5,6 +5,10 @@
   <title>Videos</title>
 </head>
 <body>
+
+  <h3>Time Accumulated</h3>
+  <p>0:0:0</p>
+
   <ul class="videos">
     <li data-time="5:43">
       Video 1
@@ -174,7 +178,7 @@
     <li data-time="12:39">
       Video 56
     </li>
-    <li data-time="1:56">
+    <li data-time="1:59">
       Video 57
     </li>
     <li data-time="4:04">
@@ -182,6 +186,35 @@
     </li>
   </ul>
 <script>
+
+  const timer = document.querySelector("p");
+
+  function grabTime() {
+  const timeNodes = Array.from(document.querySelectorAll('[data-time]'))
+
+  const seconds = timeNodes
+  .map(node => node.dataset.time)
+  .map(timeCode => {
+    const [mins, secs] = timeCode.split(':').map(parseFloat);
+    return (mins * 60) + secs;
+  })
+  .reduce((sum, seconds) => sum + seconds);
+  
+  let secsLeft = seconds;
+  const hours = Math.floor(secsLeft / 3600);
+  secsLeft = secsLeft % 3600;
+  const mins = Math.floor(secsLeft / 60);
+  secsLeft = secsLeft % 60;
+  const secs = secsLeft;
+
+  timer.innerText = `${hours}:${mins}:${secs}`;
+
+  console.log(`${hours}:${mins}:${secs}`)
+  };
+
+ timer.addEventListener('mouseover', grabTime);
+  
+
 </script>
 </body>
 </html>

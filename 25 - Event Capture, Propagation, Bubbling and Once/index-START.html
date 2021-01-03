@@ -9,6 +9,7 @@
   <div class="one">
     <div class="two">
       <div class="three">
+        <p></p>
       </div>
     </div>
   </div>
@@ -22,7 +23,7 @@
     box-sizing: inherit; 
   }
 
-  div {
+  div {s
     width: 100%;
     padding: 100px;
   }
@@ -37,11 +38,38 @@
 
   .three {
     background: coral;
+    display: flex;
+    flex: content;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
   }
 </style>
 
-<button></button>
+<button style="width: 100%; height: 42px; background-color: darkred; color: white; font-size: 24px; margin-top: 12px;"> Button </button>
 <script>
+
+const div = document.querySelectorAll('div');
+const button = document.querySelector('button');
+const numb = document.querySelector('p')
+
+function logText(e){
+  console.log(this.classList.value);
+  numb.innerText = this.classList.value;
+  e.stopPropagation();
+}
+
+div.forEach(div => div.addEventListener ('click', logText,
+{
+  capture: false
+}));
+
+button.addEventListener('click', () => {
+  console.log('?');
+  numb.innerText = 'This only works once';
+}, {
+  once: true
+});
 
 </script>
 </body>

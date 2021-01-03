@@ -13,6 +13,7 @@ body {
   margin: 0;
   text-align: center;
   font-family: 'Inconsolata', monospace;
+  display: flex;
 }
 
 .display__time-left {
@@ -30,7 +31,9 @@ body {
 }
 
 .timer__controls {
+  width: 100vw;
   display: flex;
+  z-index: 2;
 }
 
 .timer__controls > * {
@@ -79,4 +82,11 @@ body {
 .display__end-time {
   font-size: 4rem;
   color: white;
+}
+
+#test {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
 }
